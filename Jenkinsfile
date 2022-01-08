@@ -4,5 +4,5 @@
 env.COMPONENT = "frontend"
 env.BUILD_LABEL = "WORKSTATION"
 
-// Library Groovy file
+// Library Groovy files
 nginx()
