@@ -6,7 +6,9 @@ resource "aws_spot_instance_request" "ec2-spot" {
   tags = {
     Name = "${var.COMPONENT}-${var.ENV}-${count.index + 1}"
   }
+  subnet_id = data.terraform_remote_state.vpc.outputs.private_subnet[count.index]
 }
+
 
 resource "aws_ec2_tag" "spot-ec2" {
   count       = length(aws_spot_instance_request.ec2-spot)
