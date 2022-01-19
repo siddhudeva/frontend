@@ -7,7 +7,7 @@ resource "aws_spot_instance_request" "ec2-spot" {
   }
 }
 resource "aws_ec2_tag" "spot-ec2" {
-  count       = length(aws_spot_instance_request.ec2-spot[count.index+1])
+  count       = aws_spot_instance_request.ec2-spot[count.index]
   resource_id = aws_spot_instance_request.ec2-spot.id
   key         = "Name"
   value       = "${var.COMPONENT}-${var.ENV}-${count.index + 1}"
