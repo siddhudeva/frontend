@@ -3,6 +3,6 @@ resource "aws_spot_instance_request" "ec2-spot" {
   ami           = data.aws_ami.ami_ec2.id
   instance_type = var.INSTANCES_TYPE
   tags = {
-    Name = "${ENV}-${COMPONENT}-${count.index+1}"
+    Name = "${var.COMPONENT}-${var.ENV}-${count.index + 1}"
   }
 }
