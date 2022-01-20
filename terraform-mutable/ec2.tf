@@ -6,6 +6,7 @@ resource "aws_spot_instance_request" "ec2-spot" {
   tags = {
     Name = "${var.COMPONENT}-${var.ENV}-${count.index + 1}"
   }
+  security_groups = [aws_security_group.sg-ec2.id]
   subnet_id = data.terraform_remote_state.vpc.outputs.private_subnet[count.index]
 }
 
@@ -24,7 +25,7 @@ resource "aws_lb_target_group" "tg" {
   vpc_id   = data.terraform_remote_state.vpc.outputs.VPC_ID
 }
 resource "aws_lb_target_group_attachment" "tg-attach" {
-  count = length(aws_spot_instance_request.ec2-spot)
+  count            = length(aws_spot_instance_request.ec2-spot)
   target_group_arn = data.terraform_remote_state.alb.outputs.alb_private_arn
   target_id        = aws_spot_instance_request.ec2-spot.*.spot_instance_id[count.index]
   port             = 80
