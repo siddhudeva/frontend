@@ -9,7 +9,7 @@ resource "null_resource" "app-deploy" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo The connection is allowed"
+      "ansible --version"
     ]
   }
 }
