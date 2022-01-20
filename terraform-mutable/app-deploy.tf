@@ -7,7 +7,7 @@ resource "null_resource" "app-deploy" {
     host     = aws_spot_instance_request.ec2-spot.*.private_ip[count.index]
   }
 
-  provisioner "remote-exec" {
+  provisioner "remote-exe" {
     inline = [
       "ansible-pull -U https://github.com/siddhudeva/ansible-1.git roboshop-pull.yml -e COMPONENT=${var.COMPONENT} -e ENV=${var.ENV}"
     ]
