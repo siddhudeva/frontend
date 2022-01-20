@@ -26,7 +26,7 @@ resource "aws_lb_target_group" "tg" {
 }
 resource "aws_lb_target_group_attachment" "tg-attach" {
   count            = length(aws_spot_instance_request.ec2-spot)
-  target_group_arn = data.terraform_remote_state.alb.outputs.alb_private_arn
+  target_group_arn = aws_lb_target_group.tg.arn
   target_id        = aws_spot_instance_request.ec2-spot.*.spot_instance_id[count.index]
   port             = 80
 }
