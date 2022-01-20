@@ -9,7 +9,7 @@ resource "null_resource" "app-deploy" {
 
   provisioner "remote-exec" {
     inline = [
-      "ansible --version"
+      "echo this is working fine"
     ]
   }
 }
