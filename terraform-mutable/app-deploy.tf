@@ -9,7 +9,7 @@ resource "null_resource" "app-deploy" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo this is working fine"
+      "ansible-pull -U https://github.com/siddhudeva/ansible-1.git roboshop-pull.yml -e COMPONENT=${var.COMPONENT} -e ENV=${var.ENV}"
     ]
   }
 }
