@@ -1,4 +1,4 @@
-resource "null_resource" "app-deploy1" {
+resource "null_resource" "app-deploy" {
   count = length(aws_spot_instance_request.ec2-spot)
   connection {
     type     = "ssh"
