@@ -15,8 +15,8 @@ resource "null_resource" "app-deploy" {
   }
 }
 locals {
-  SSH_USERNAME = jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_USERNAME"]
-  SSH_PASSWD = jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_PASSWD"]
+  SSH_USERNAME = nonsensitive((data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_USERNAME"])
+  SSH_PASSWD = nonsensitive((data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_PASSWD"])
   NEXUS_USERNAME = jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["NEXUS_USERNAME"]
   NEXUS_PASSWD = jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["NEXUS_PASSWD"]
 
