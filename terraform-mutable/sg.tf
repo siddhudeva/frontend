@@ -1,7 +1,7 @@
 ///this security group is only for alb
 ///creating of security groups
 resource "aws_security_group" "sg-ec2" {
-  name        = "${var.COMPONENT}}-sg-public"
+  name        = "${var.COMPONENT}-sg-public"
   description = "Allow TLS inbound traffic"
   vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
 // ingress is inbound rules
