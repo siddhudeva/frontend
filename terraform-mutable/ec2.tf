@@ -8,7 +8,7 @@ resource "aws_spot_instance_request" "ec2-spot" {
     Name = "${var.COMPONENT}-${var.ENV}-${count.index + 1}"
   }
 /// adding security group to the ec2 instance and this is a private security group
-  security_groups = [aws_security_group.sg-ec2.id]
+  security_groups  =  aws_security_group.sg-ec2.id
   subnet_id = data.terraform_remote_state.vpc.outputs.private_subnet[count.index]
 }
 /// adding tags to the instance
