@@ -27,7 +27,7 @@ data "terraform_remote_state" "alb" {
 data "aws_secretsmanager_secret" "secret" {
   name = "nexus"
 }
-///// why????
+///// it provides secret manager secrets version including its secret value,to manage the metadata
 data "aws_secretsmanager_secret_version" "secret-ssh" {
   secret_id = data.aws_secretsmanager_secret.secret.id
 }
